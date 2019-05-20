@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.prs.business.User;
 import com.prs.business.Vendor;
 
 public class VendorDB {
@@ -22,10 +23,21 @@ public class VendorDB {
 		finally {
 			em.close();
 		}
-		
-		
-		return vendors;
+		return vendors;		
+	}
+	
+	public static Vendor getVendorByID(int vendorID) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		Vendor vendor = null;
+
+		try { 
+			vendor = em.find(Vendor.class, vendorID);
+			return vendor;
+		} finally {
+			em.close();
+		}
 		
 	}
+
 	
 }

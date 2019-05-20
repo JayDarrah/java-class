@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.prs.business.PurchaseRequest;
 import com.prs.business.PurchaseRequestLineItem;
 
 public class PurchaseRequestLineItemDB {
@@ -22,10 +23,21 @@ public class PurchaseRequestLineItemDB {
 		finally {
 			em.close();
 		}
-		
-		
-		return purchaseRequestLineItems;
+		return purchaseRequestLineItems;	
+	}
+	
+	public static PurchaseRequestLineItem getPurchaseRequestLineItemByID(int purchaseRequestLineItemID) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		PurchaseRequestLineItem purchaseRequestLineItem = null;
+
+		try { 
+			purchaseRequestLineItem = em.find(PurchaseRequestLineItem.class, purchaseRequestLineItemID);
+			return purchaseRequestLineItem;
+		} finally {
+			em.close();
+		}
 		
 	}
+
 	
 }

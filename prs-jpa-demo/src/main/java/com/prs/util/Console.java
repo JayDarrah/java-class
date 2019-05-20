@@ -77,6 +77,23 @@ public class Console {
         }
         return s;
     }
+    
+    public static String getSelectionString( String prompt, String[] sel) {
+    	String s = "";
+    	boolean isValid = false;
+    	while (!isValid) {
+    		s = getRequiredString(prompt);
+    		for (String x: sel) {
+    			if (x.equalsIgnoreCase(s)) {
+    				isValid = true;
+    			} 
+    		}
+    		if (!isValid) {
+    			System.out.println("Unknown command: "+s+"!");
+    		}
+    	}
+		return s;
+    }
 
     public static double getDouble( String prompt) {
         double d = 0;

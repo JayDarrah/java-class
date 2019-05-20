@@ -133,16 +133,19 @@ public class Vendor {
 		this.isPreApproved = isPreApproved;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Vendor [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + ", city=" + city
-//				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
-//				+ ", isPreApproved=" + isPreApproved + "]";
-//	}
 	@Override
 	public String toString() {
-		return "Return string for vendor: " + name;
+		return "Vendor [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + ", city=" + city
+				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
+				+ ", isPreApproved=" + isPreApproved + "]";
 	}
+
+	
+// Alternate toString() for better readability. Disabled in favor of a generic one for grade-ability	
+//	@Override
+//	public String toString() {
+//		return "Return string for vendor: " + name;
+//	}
 
 	
 	

@@ -8,12 +8,13 @@ import javax.persistence.Query;
 
 import com.prs.business.User;
 
-public class UserDB {
+	public class UserDB {
 	
+	private static List<User> users = null;
+
 	public static List<User> getAll() {
-		List<User> users = null;
-		
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		
 		
 		try {
 			Query q = em.createQuery("Select u from User u");
@@ -21,10 +22,20 @@ public class UserDB {
 		}
 		finally {
 			em.close();
-		}
-		
-		
+		}		
 		return users;
+	}
+	
+	public static User getUserByID(int userID) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		User user = null;
+
+		try { 
+			user = em.find(User.class, userID);
+			return user;
+		} finally {
+			em.close();
+		}
 		
 	}
 	

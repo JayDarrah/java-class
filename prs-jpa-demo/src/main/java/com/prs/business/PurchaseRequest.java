@@ -4,13 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class PurchaseRequest {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id = 0;
-	int userID = 0;
+	@OneToOne
+	@JoinColumn(name="userID")
+	User user;
 	String description = null;
 	String justification = null;
 	String dateNeeded = null;
@@ -24,11 +29,11 @@ public class PurchaseRequest {
 		super();
 	}
 
-	public PurchaseRequest(int id, int userID, String description, String justification, String dateNeeded,
+	public PurchaseRequest(int id, User user, String description, String justification, String dateNeeded,
 			String deliveryMode, String status, double total, String submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
-		this.userID = userID;
+		this.user = user;
 		this.description = description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -39,10 +44,10 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 
-	public PurchaseRequest(int userID, String description, String justification, String dateNeeded, String deliveryMode,
+	public PurchaseRequest(User user, String description, String justification, String dateNeeded, String deliveryMode,
 			String status, double total, String submittedDate, String reasonForRejection) {
 		super();
-		this.userID = userID;
+		this.user = user;
 		this.description = description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -61,12 +66,12 @@ public class PurchaseRequest {
 		this.id = id;
 	}
 
-	public int getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getDescription() {
@@ -135,7 +140,7 @@ public class PurchaseRequest {
 
 	@Override
 	public String toString() {
-		return "PurchaseRequest [id=" + id + ", userID=" + userID + ", description=" + description + ", justification="
+		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
 				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", Status=" + Status
 				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
 				+ "]";
